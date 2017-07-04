@@ -1,6 +1,6 @@
 Package.describe({
 	summary: "Three.js core library + several useful extensions from the examples folder.",
-	version: "0.75.0",
+	version: "0.86.0",
 	name: "limemakers:three",
 	git: "https://github.com/ottorobotto/meteor-three.git",
 });
@@ -41,18 +41,22 @@ Package.on_use(function(api) {
 		"extras/postprocessing/BloomPass.js",
 		"extras/postprocessing/BokehPass.js",
 		"extras/postprocessing/ClearPass.js",
+		"extras/postprocessing/CubeTexturePass.js",
 		"extras/postprocessing/DotScreenPass.js",
 		"extras/postprocessing/EffectComposer.js",
 		"extras/postprocessing/FilmPass.js",
 		"extras/postprocessing/GlitchPass.js",
 		"extras/postprocessing/ManualMSAARenderPass.js",
 		"extras/postprocessing/MaskPass.js",
+		"extras/postprocessing/OutlinePass.js",
 		"extras/postprocessing/RenderPass.js",
 		"extras/postprocessing/SavePass.js",
 		"extras/postprocessing/ShaderPass.js",
 		"extras/postprocessing/SMAAPass.js",
+		"extras/postprocessing/SSAARenderPass.js",
 		"extras/postprocessing/TAARenderPass.js",
 		"extras/postprocessing/TexturePass.js",
+		"extras/postprocessing/UnrealBloomPass.js",
 
 		// Shaders
 		"extras/shaders/BasicShader.js",
@@ -79,6 +83,7 @@ Package.on_use(function(api) {
 		"extras/shaders/HorizontalTiltShiftShader.js",
 		"extras/shaders/HueSaturationShader.js",
 		"extras/shaders/KaleidoShader.js",
+		"extras/shaders/LuminosityHighPassShader.js",
 		"extras/shaders/LuminosityShader.js",
 		"extras/shaders/MirrorShader.js",
 		"extras/shaders/NormalMapShader.js",

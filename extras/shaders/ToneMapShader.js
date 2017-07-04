@@ -1,18 +1,19 @@
 /**
  * @author miibond
  *
- * Full-screen tone-mapping shader based on http://www.graphics.cornell.edu/~jaf/publications/sig02_paper.pdf
+ * Full-screen tone-mapping shader based on http://www.cis.rit.edu/people/faculty/ferwerda/publications/sig02_paper.pdf
  */
 
 THREE.ToneMapShader = {
 
 	uniforms: {
 
-		"tDiffuse": { type: "t", value: null },
-		"averageLuminance":  { type: "f", value: 1.0 },
-		"luminanceMap":  { type: "t", value: null },
-		"maxLuminance":  { type: "f", value: 16.0 },
-		"middleGrey":  { type: "f", value: 0.6 }
+		"tDiffuse": { value: null },
+		"averageLuminance":  { value: 1.0 },
+		"luminanceMap":  { value: null },
+		"maxLuminance":  { value: 16.0 },
+		"minLuminance":  { value: 0.01 },
+		"middleGrey":  { value: 0.6 }
 	},
 
 	vertexShader: [
@@ -35,6 +36,7 @@ THREE.ToneMapShader = {
 		"varying vec2 vUv;",
 
 		"uniform float middleGrey;",
+		"uniform float minLuminance;",
 		"uniform float maxLuminance;",
 		"#ifdef ADAPTED_LUMINANCE",
 			"uniform sampler2D luminanceMap;",
@@ -56,7 +58,7 @@ THREE.ToneMapShader = {
 			"float fLumPixel = dot(vColor, LUM_CONVERT);",
 
 			// Apply the modified operator (Eq. 4)
-			"float fLumScaled = (fLumPixel * middleGrey) / fLumAvg;",
+			"float fLumScaled = (fLumPixel * middleGrey) / max( minLuminance, fLumAvg );",
 
 			"float fLumCompressed = (fLumScaled * (1.0 + (fLumScaled / (maxLuminance * maxLuminance)))) / (1.0 + fLumScaled);",
 			"return fLumCompressed * vColor;",
